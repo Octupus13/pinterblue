@@ -1,3 +1,10 @@
+
+
+//JWT SECRET
+const JWT_SECRET = 'pinterbluenotprinter';
+const JWT_EXPIRE_TIMEOUT = 3600;
+
+//SERVER
 const SERVER_PORT = 3000;
 
 //DATABASE
@@ -12,5 +19,7 @@ module.exports = {
     DB_USER,
     DB_PASSWORD,
     DB_NAME,
-    DB_PORT
+    DB_PORT,
+    JWT_SECRET,
+    JWT_EXPIRE_TIMEOUT
 };
