@@ -1,4 +1,5 @@
-
+//IMG MAX MEMORY SIZE
+const IMG_MAX_SIZE = 5000000;
 
 //JWT SECRET
 const JWT_SECRET = 'pinterbluenotprinter';
@@ -21,5 +22,6 @@ module.exports = {
     DB_NAME,
     DB_PORT,
     JWT_SECRET,
-    JWT_EXPIRE_TIMEOUT
+    JWT_EXPIRE_TIMEOUT,
+    IMG_MAX_SIZE
 };
