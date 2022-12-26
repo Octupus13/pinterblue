@@ -5,7 +5,7 @@ const {JWT_SECRET} =require('../configs/constant')
 function authenticateToken(req, res, next) {
     const authHeader = req.headers['authorization']
     const token = authHeader && authHeader.split(' ')[1]
-  
+    console.log(token);
     if (token == null) return res.sendStatus(401)
   
     jwt.verify(token, JWT_SECRET, (err, user) => {

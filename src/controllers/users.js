@@ -20,7 +20,7 @@ const bcrypt = require("bcrypt");
 /*---------------/users/getMy-----------------*/
 const getMyProfile = async (req, res) => {
   const id = req.user.id;
-  const [users] = await connection.query("SELECT * FROM users where uid = ?", [id]);
+  const [users] = await connection.query("SELECT uid,username,email FROM users where uid = ?", [id]);
   console.log(users[0]);
   res.status(200).json(users[0]);
 }

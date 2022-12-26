@@ -9,9 +9,6 @@ const usersRoute = require('./src/routes/users')
 app.use(express.static('public'))
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
-app.engine('html', require('ejs').renderFile);
-app.set('view engine','html')
-app.set('views',__basepath+'/public')
 
 app.use('/auth',authRoute)
 app.use('/img',picturesRoute)
@@ -20,8 +17,6 @@ app.use('/users',usersRoute)
 
 app.listen(SERVER_PORT,()=>{
     console.log("SERVER CONNECTED");
-
- 
 })
 
 

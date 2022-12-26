@@ -4,12 +4,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles/ab_styles.css">
     <title>Document</title>
 </head>
 <body>
-    <div id="meow"><h1 id="text"></h1></div>
-    <button onclick="userGet('/users/getMy')">Users</button>
-    <button onclick="fetcherGet('/img/get')">Yaho</button>
+  <nav class="nav">
+    <i class="uil uil-bars navOpenBtn"></i>
+    <a href="/index.html" class="logo">Pinterblue</a>
+
+    <ul class="nav-links"  id="navbar">
+      <i class="uil uil-times navCloseBtn"></i>
+      <li><a href="/index.html">Home</a></li>
+      <li><a href="/about.html">About Us</a></li> 
+      <li><a href="/contact.html">Contact Us</a></li>
+      <li><a href="/upload.html">Upload</a></li>
+    </ul>
+  </nav>
+    <div id="picdiv" class="picdiv">
+    </div>
 </body>
-<script src="fetcher.js"></script>
+<script src="./scripts/script.js"></script>
+<script src="./scripts/fetcher.js"></script>
+<script>getById(getEpRedirect())</script>
+<script>checkOwn(getEpRedirect())</script>
+<script></script>
 </html>
