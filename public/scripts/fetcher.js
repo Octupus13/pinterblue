@@ -133,13 +133,16 @@ userNav = async (user) =>{
   checkOwn = async (user) =>{
     const users = await user
     const id = document.cookie.substring(document.cookie.indexOf('Bearer'))
-    let response = await fetch(ep,{method:"GET",headers:{'authorization':id}})
+    let response = await fetch('/img/check/'+user,{method:"GET",headers:{'authorization':id}})
     let result = await response.json()
-    if(result.status){
+    console.log(result);
+    if(result.owned){
         const btnDiv = document.getElementById('btnDiv')
         const btnDelete = document.createElement('button')
-        btnDelete.appendChild(document.createTextNode('Download'))
+        btnDelete.appendChild(document.createTextNode('Delete'))
         btnDelete.setAttribute('onclick','deleteF(getEpRedirect())')
+        btnDiv.appendChild(btnDelete)
+        console.log("แบะๆ");
     }
   }
 
@@ -147,7 +150,9 @@ userNav = async (user) =>{
     const users = await user
     const id = document.cookie.substring(document.cookie.indexOf('Bearer'))
     let response = await fetch('/img/del/'+users,{method:'DELETE',headers:{'authorization':id}})
-    alert(response.message)
+    let result = await response.json()
+    alert(result.message)
+    window.location.href = '/'
 }
 
   userNav(userGet('users/getMy'))

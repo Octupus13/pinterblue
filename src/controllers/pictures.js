@@ -27,7 +27,7 @@ const uploadFile = async (req,res)=>{
 }
 /*---------------/img/get-----------------*/
 const getAllImg = async(req,res) =>{
-    const [allImg] = await connection.query('SELECT pid,picname,picdata,content,filepath,upload_by FROM pictures WHERE delete_at IS NULL')
+    const [allImg] = await connection.query('SELECT pid,picname,picdata,filepath,upload_by FROM pictures WHERE delete_at IS NULL')
     allImg.forEach(element => {
         let bufferBase64 = new Buffer.from( element.picdata, 'binary' ).toString('base64');
         element.picdata = bufferBase64;
@@ -38,7 +38,7 @@ const getAllImg = async(req,res) =>{
 const getImgByID = async(req,res) =>{
     const id = req.params.id
     console.log(id);
-    const [Img] = await connection.query('SELECT picname,picdata,content,upload_by FROM pictures WHERE delete_at IS NULL AND pid = ?',[id])
+    const [Img] = await connection.query('SELECT picname,picdata,upload_by FROM pictures WHERE delete_at IS NULL AND pid = ?',[id])
     if(Img && Img.length != 0) {
     let bufferBase64 = new Buffer.from(Img[0].picdata, 'binary').toString('base64');
     Img[0].picdata = bufferBase64
@@ -52,7 +52,7 @@ const delImg = async (req,res) =>{
     const id = req.params.id
     const uid = req.user.id
     console.log(id);
-    const [Img] = await connection.query('SELECT picname,picdata,content,upload_by FROM pictures WHERE delete_at IS NULL AND pid = ? AND upload_by = ?',[id,uid])
+    const [Img] = await connection.query('SELECT picname,picdata,upload_by FROM pictures WHERE delete_at IS NULL AND pid = ? AND upload_by = ?',[id,uid])
     if(!Img) return res.status(404).json({message:"Page Not Found"})
     else{
         await connection.query('DELETE FROM pictures WHERE pid = ?',[id])
@@ -62,7 +62,7 @@ const delImg = async (req,res) =>{
 
 const downloadImg = async (req,res) =>{
     const id = req.params.id
-    const [Img] = await connection.query('SELECT picname,picdata,content,upload_by FROM pictures WHERE delete_at IS NULL AND pid = ?',[id])
+    const [Img] = await connection.query('SELECT picname,picdata,upload_by FROM pictures WHERE delete_at IS NULL AND pid = ?',[id])
     if(!Img) return res.status(404).json({message:"Page Not Found"})
     let bufferBase64 = new Buffer.from(Img[0].picdata, 'binary')
     res.status(200).send(bufferBase64)
@@ -70,7 +70,7 @@ const downloadImg = async (req,res) =>{
 const checkOwn = async (req,res) =>{
     const id = req.params.id
     const uid = req.user.id
-    const [Img] = await connection.query('SELECT picname,picdata,content,upload_by FROM pictures WHERE delete_at IS NULL AND pid = ? AND upload_by = ?',[id,uid])
+    const [Img] = await connection.query('SELECT picname,picdata,upload_by FROM pictures WHERE delete_at IS NULL AND pid = ? AND upload_by = ?',[id,uid])
     if(Img && Img.length != 0){
         return res.status(200).json({owned:true})
     }

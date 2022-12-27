@@ -10,6 +10,6 @@ router.get('/get',getAllImg)
 router.get('/get/:id',getImgByID)
 router.delete('/del/:id', authenticateToken,delImg)
 router.get('/download/:id',downloadImg)
-router.get('/check',authenticateToken,checkOwn)
+router.get('/check/:id',authenticateToken,checkOwn)
 
 module.exports = router

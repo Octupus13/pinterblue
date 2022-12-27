@@ -2,7 +2,7 @@ const dropArea = document.querySelector('.drag-area');
 const dragText = document.querySelector('.header');
 
 let button = dropArea.querySelector('.button');
-let input = dropArea.querySelector('input');
+let input = dropArea.querySelector('input[type="file"]');
 
 let file;
 // when file is inside drag area
@@ -46,7 +46,7 @@ dropArea.addEventListener('dragover', (event) => {
         let imgTag = `<img src="${fileURL}" alt="">`;
         dropArea.innerHTML = imgTag;
       };
-      fileReader.readAsDataURL(file);
+        fileReader.readAsDataURL(file)
     } else {
       alert('This is not an Image File');
       dropArea.classList.remove('active');
@@ -66,12 +66,12 @@ dropArea.addEventListener('dragover', (event) => {
   
   sendFile = async (ep) =>{
     const id = document.cookie.substring(document.cookie.indexOf('Bearer'))
-    const formData  = new FormData();
-
-  for(const name in data) {
-    formData.append(name, data[name]);
-  }
-    const res = await fetch(ep,{method:'POST',headers:{'Content-Type':'multipart/form-data','authorization':id},body:file})
+    console.log(input.files[0]);
+    console.log(file);
+    const Img  = new FormData();
+    Img.append('file',file);
+    console.log(Img);
+    const res = await fetch(ep,{method:'POST',headers:{'authorization':id},body:Img})
     const data = await res.json()
     console.log(data);
     console.log(data.message);
